@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="This is a preview website for the Digital Agency Techtika.">
+        <meta name="keywords" content="Marketing,Branding,Social Media,UX Design,Website,Ecommerce,Design,App">
+        <meta name="author" content="Gabriela Concolin Schimidt">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" type="text/css" href="css/screen.css">
+        <title>Techtika Digital Agency</title>
+    </head>
+
+    <header class="">
+        <div class="container">
+            <h1><a href="#intro"><img src="img/logo.png"></a></h2>
+            <div id="menu">
+                <div>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    
+                </div>
+            </div>
+            <nav>
+                <a href="#background">background</a>
+                <a href="#work">work</a>
+                <a href="#skills">skills</a>
+                <a href="#contact">contact</a>
+            </nav>
+        </div>
+    </header>
+    <div class="filler"></div>
+
+    <body>
+
+        
+
+        <link href="https://fonts.googleapis.com/css?family=Oswald:400,700|Source+Sans+Pro:400,600,700,900" rel="stylesheet">
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    </body>
+
+    <footer>
+        <div class="container">
+            <i class="icon-spock" title="LL&P"></i>
+            <small>2017</small>
+        </div>
+    </footer>
+
+</html>
+
+<script type="text/javascript">
+  jQuery(window).ready(function (){
+
+    // activating animations for mobile menu
+    // jQuery('#menu').click(function(){
+    //     jQuery(this).toggleClass('active-body')
+    //     jQuery('header').toggleClass('active-body');
+    //     jQuery('section').toggleClass('active-body');
+    //     jQuery('footer').toggleClass('active-body');
+    // });
+
+    //header nav scroll
+    var headerHeight = 77;
+    jQuery("header a, .started").click(function(){
+
+        // if in responsive mode, close the menu
+        if( screen.width <= 770 ) {
+            headerHeight = 54;
+            jQuery('#menu, header, section, footer').removeClass('active-body');
+        }
+
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+          var target = jQuery(this.hash);
+          target = target.length ? target : jQuery('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            jQuery('html, body').animate({
+              scrollTop: target.offset().top-headerHeight
+            }, 1000);
+            return false;
+          }
+        }
+    }); 
+
+  }); 
+
+};
+</script>

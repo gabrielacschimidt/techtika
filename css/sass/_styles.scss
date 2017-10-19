@@ -1,0 +1,217 @@
+body{
+	color: $text-base;
+	font-family: $font-primary;
+	font-weight: 300;
+	max-width: 100%;
+	overflow-X: hidden;
+    overflow-Y: auto;
+    &.active-body{
+    	overflow: hidden;
+    }
+}
+
+// animation to open mobile menu
+.active-body{
+	@include transform(translate3d(-205px,0,0) !important);
+}
+
+header{
+    width:100%;
+    background: #fbfbfb;
+    position: fixed;
+    box-shadow:0px 0px 3px 0px rgba(0,0,0,0.2);
+    top: 0;
+    left: 0;
+    z-index: 2;
+
+    @include transition(height 0.3s, all 0.5s ease-in-out);
+
+    .container{
+        display: table;
+        @include mobileview{
+            text-align: center;
+        }
+    }
+    &+.filler{
+    	height: 77px;
+    	@include mobileview{
+    		height: 54px;
+    	}
+    }
+
+    h2{
+        display:inline-block;
+        float:left;
+        padding: 26px 30px;
+        @include mobileview{
+        	padding: 15px 0;
+        }
+    }
+    nav{
+        display:inline-block;
+        float:right;
+        padding: 30px ;
+        a{
+            margin: 0 20px;
+            display:inline;
+            position: relative;
+            font-family: $font-primary;
+
+            @include desktopview{
+	            &:after{
+	            	position: absolute;
+	            	left: 0;
+	            	bottom:-2px;
+	            	content:'';
+	            	width:0;
+	            	height:2px;
+	            	background: $bright-green;
+	            	@include transition(0.3s ease); 
+	            }
+
+	            &:hover:after{
+	            	width:100%;
+	            }
+            }
+
+            @include mobileview{
+            	margin: 10px 0;
+			    display: table;
+			    float: right;
+		        width: auto;
+    			clear: both;
+            }
+        }
+
+        @include mobileview{
+    	    position: absolute;
+		    height: 100vh;
+		    background: #fbfbfb;
+		    right: -205px;
+		    width: 145px;
+		    padding-top: 20px;
+		    @include box-shadow(0px 0 2px 0 rgba(0,0,0,0.2));
+		    @include transition(0.5s ease-in-out);
+        }
+    }
+
+    &.active-body{
+    	nav{
+    		right:0;
+    	}
+    }
+
+    #menu {
+    	display: none;
+        @include mobileview {
+        	display: block;
+            position: absolute;
+            top: 0;
+            right:0;
+            width: 65px;
+            height: 54px;
+            @include rotate(0);
+            @include transition(.5s ease-in-out);
+
+            // container das linhas para poder posicionar corretamente
+            >div{
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%,-50%);
+                width: 25px;
+                height: 18px;
+            }
+
+            // configuração de todas as linhas
+            span{
+                display: block;
+                position: absolute;
+                height: 2px;
+                width: 100%;
+                background: #000;
+                left: 0;
+                @include rotate(0);
+                @include transition(.25s ease-in-out);
+            }
+
+            span:nth-child(1) {
+              top: 0px;
+            }
+
+            span:nth-child(2), span:nth-child(3) {
+              top: 8px;
+            }
+
+            span:nth-child(4) {
+              top: 16px;
+            }
+
+            &.active-body span:nth-child(1) {
+              top: 8px;
+              width: 0%;
+              left: 50%;
+            }
+
+            &.active-body span:nth-child(2) {
+                @include rotate(45);
+            }
+
+            &.active-body span:nth-child(3) {
+              @include rotate(-45);
+            }
+
+            &.active-body span:nth-child(4) {
+              top: 8px;
+              width: 0%;
+              left: 50%;
+            }
+        }
+
+    }
+
+}
+
+footer{
+    padding:20px 0;
+    text-align: center;
+    background: #f0f0f0;
+}
+
+// transition for mobile menu
+section, footer{
+	@include transition(all 0.5s ease-in-out);
+}
+
+.fakelazyload{
+	opacity: 0;
+    @include transition(1s ease);
+
+    &.loaded{
+    	opacity: 1;
+    }
+}
+.fadeDown{
+	@include transform(translateY(-100%));
+}
+.fadeUp{
+	@include transform(translateY(50%));
+}
+.fadeUp,.fadeDown{
+	&.loaded{
+		@include transition(0.6s ease-in-out);
+		@include transform(translateY(0) !important) ;
+	}
+}
+// animação 
+@keyframes floating {
+    from { @include translate(0,  0px); }
+    65%  { @include translate(0, 10px); }
+    to   { @include translate(0, -0px); }    
+}
+// animação 
+@keyframes swinging {
+    from { @include translate(0, 0px); }
+    65%  { @include translate(5px, 0px); }
+    to   { @include translate(0, -0px); }    
+}
