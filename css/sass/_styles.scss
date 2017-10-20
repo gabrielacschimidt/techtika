@@ -221,7 +221,7 @@ header{
     width: 100%;
     display: table;
     position: relative;
-    padding: 50px 0;
+    padding: 0;
     height: calc(100vh - 90px);
     font-size: 20px;
     line-height: 1.5;
@@ -231,6 +231,13 @@ header{
         font-size: 17px;
         max-width: 90%;
         @include push-auto();
+    }
+
+    .middle-block{
+        transform: translate(-50%, -50%);
+        position: absolute;
+        left: 50%;
+        top: 50%;
     }
 
     h2{
@@ -302,47 +309,227 @@ header{
 
 }
 
+#contact{
+    overflow: hidden;
+
+    &:before{
+        content:"";
+        width:200%;
+        height: 100%;
+        background: $dark-green;
+        @include rotate(10);
+        position:absolute;
+        left:0;
+        top:0;
+        z-index: -1;
+        transform-origin: left top;
+    }
+
+    @include desktopview{
+        width: 100%;
+        margin: 50px auto 0;
+        
+        .wrapper{
+            display: table;
+            // max-width: 800px;
+        }
+    }
+
+    .mobile-box{
+        width:50%;
+        display:inline-block;
+        vertical-align: middle;
+        float:none;
+    }
+
+    .content-wrapper{
+        color: #fff;
+        @include mobileview{
+            margin-bottom: 20px;
+        }
+        h3{
+            margin: 0 0 20px;
+            text-shadow: 1px 1px 5px transparentize(#d1edff,0.5);
+        }
+        p{
+            line-height: 2;
+            text-shadow: 1px 1px 5px transparentize(#d1edff,0.5);
+        }
+    }
+    .form-wrapper{
+        background-color: transparentize(#ccc,0.5);
+        @include materialshadow();
+        .form{
+            padding:30px;
+            
+            .shadow{
+                position: relative;
+                &:after,&:before{
+                    content:'';
+                    width:100px;
+                    height: 30px;
+                    background: transparent;
+                    position: absolute;
+                    bottom:40px;
+                    box-shadow: 0px 43px 10px rgba(0,0,0,0.2);
+                }
+                &:after{
+                    right:0;
+                    @include rotate(5);
+                }
+                &:before{
+                    left: 0;
+                    @include rotate(-5);
+                }
+            }
+
+            form{
+                background-color: #fbfbfb;
+                padding:10px;
+                z-index: 1;
+                position: relative;
+                @include materialshadow();
+            }
+            input,textarea{
+                border:none;
+                width:100%;
+                background: transparent;
+                @include transition(300ms cubic-bezier(.4, 0, .2, 1));
+                color: $text-base;
+                font-size: 16px;
+                font-family: $font-primary;
+                position: relative;
+            }
+            input{
+                height: 40px;
+            }
+            // cleaning autofill
+            input:-webkit-autofill {
+                -webkit-box-shadow: 0 0 0 30px #fbfbfb inset;
+            }
+            textarea{
+                height: 105px;
+                resize: none;
+                padding-top: 15px;
+            }
+            label{
+                color: rgba(142,131,139,0.38);
+                position: absolute;
+                top: 12px;
+                left: 0;
+                z-index: -1;
+                cursor: pointer;
+                @include transition(300ms cubic-bezier(.4, 0, .2, 1));
+
+                &.active{
+                    top:-5px;
+                    font-size: 10px;
+                    color: #fbfbfb;
+                }
+            }
+            .input-box{
+                margin-bottom: 10px;
+                position: relative;
+            }
+            button{
+                width: 100%;
+                padding: 10px;
+                color: #f0f0f0;
+                background: #ccc;
+                // text-shadow: 1px 1px 0 blue;
+                @include border-radius(2px);
+                @include box-shadow(0 1px 2px rgba(0,0,0,0.2));
+                @include transition(0.3s ease);
+                // &:after{
+                //     margin-left: 10px;
+                //     display: inline-block;
+                //     content: '\f1d8';
+                //     font-family: "fontello";
+                //     @include transition(0.1s ease);
+                // }
+                &:hover{
+                    background: lighten(#ccc,10%);
+                }
+                &:active:after,&:focus:after{
+                    @include rotate (20);
+
+                }
+            }
+            .currently{
+                margin: 20px 0 10px;
+            }
+        }
+    }
+}
+
 
 footer{
+    color: #fff;
     padding:20px 0;
     text-align: center;
-    background: #f0f0f0;
+    background: $dark-green;
 }
+
+/*****************/ 
+/* reusable code */
+/*****************/ 
+
+section{
+    position: relative;
+    padding: 50px 0;
+    h2{
+        text-align: center;
+        margin: 0 auto 10px;
+        width: 100%;
+        float: left;
+        position: relative;
+        @include mobileview{
+            margin-bottom: 50px;
+        }
+        // &:after{
+        //     content:'';
+        //     width:30px;
+        //     height: 2px;
+        //     position: absolute;
+        //     left:50%;
+        //     bottom:-15px;
+        //     @include translate(-50%, 0);
+        //     background: $dark-blue;
+        // }
+    }
+    .middle-block{
+        display: table;
+        position: relative;
+        @include push-auto();
+        @include desktopview{
+            top: 50%;
+            @include translate(0, -50%);
+        }
+    }
+} 
 
 // transition for mobile menu
 section, footer{
-	@include transition(all 0.5s ease-in-out);
+    @include transition(all 0.5s ease-in-out);
 }
 
 .fakelazyload{
-	opacity: 0;
+    // opacity: 0;
     @include transition(1s ease);
 
     &.loaded{
-    	opacity: 1;
+        opacity: 1;
     }
 }
 .fadeDown{
-	@include transform(translateY(-100%));
+    @include transform(translateY(-100%));
 }
 .fadeUp{
-	@include transform(translateY(50%));
+    @include transform(translateY(50%));
 }
 .fadeUp,.fadeDown{
-	&.loaded{
-		@include transition(0.6s ease-in-out);
-		@include transform(translateY(0) !important) ;
-	}
-}
-// animação 
-@keyframes floating {
-    from { @include translate(0,  0px); }
-    65%  { @include translate(0, 10px); }
-    to   { @include translate(0, -0px); }    
-}
-// animação 
-@keyframes swinging {
-    from { @include translate(0, 0px); }
-    65%  { @include translate(5px, 0px); }
-    to   { @include translate(0, -0px); }    
+    &.loaded{
+        @include transition(0.6s ease-in-out);
+        @include transform(translateY(0) !important) ;
+    }
 }
