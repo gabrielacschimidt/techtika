@@ -3,7 +3,7 @@
 
     <head>
         <meta charset="UTF-8">
-        <meta name="description" content="This is a preview website for the Digital Agency Techtika.">
+        <meta name="description" content="This is a preview website for Techtika Digital Agency.">
         <meta name="keywords" content="Marketing,Branding,Social Media,UX Design,Website,Ecommerce,Design,App">
         <meta name="author" content="Gabriela Concolin Schimidt">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,20 +14,18 @@
 
     <header class="">
         <div class="container">
-            <h1><a href="#intro"><img src="img/logo.png"></a></h2>
+            <h1><a href="#about"><img src="img/logo.png"></a></h1>
             <div id="menu">
                 <div>
                     <span></span>
                     <span></span>
                     <span></span>
                     <span></span>
-                    
                 </div>
             </div>
             <nav>
-                <a href="#background">background</a>
-                <a href="#work">work</a>
-                <a href="#skills">skills</a>
+                <a href="#about">about</a>
+                <a href="#skills">cases</a>
                 <a href="#contact">contact</a>
             </nav>
         </div>
@@ -36,9 +34,27 @@
 
     <body>
 
-        
+        <section id='about'>
+            <div class="container middle-block">
+                <h2>impact your <span>public</span></h2>
+                <p>Techtika is a digital agency based on New York City with diverse teams spread all over the world. We provide expertise to create new products and to manage ideas that are already thriving.</p>
+                <p>Meet our range of products and services:</p>
+                <ul>
+                    <li>branding</li>
+                    <li>marketing</li>
+                    <li>social media managing</li>
+                    <li>website & apps for business</li>
+                    <li>ecommerce</li>
+                </ul>
 
-        <link href="https://fonts.googleapis.com/css?family=Oswald:400,700|Source+Sans+Pro:400,600,700,900" rel="stylesheet">
+                <div class="wrapper">
+                    <a href="">See some of our successful cases...</a>
+                    <a href="">... or send a message and follow us.</a>
+                </div>
+            </div>
+        </section>
+
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,900" rel="stylesheet">
         <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     </body>
 
@@ -55,16 +71,16 @@
   jQuery(window).ready(function (){
 
     // activating animations for mobile menu
-    // jQuery('#menu').click(function(){
-    //     jQuery(this).toggleClass('active-body')
-    //     jQuery('header').toggleClass('active-body');
-    //     jQuery('section').toggleClass('active-body');
-    //     jQuery('footer').toggleClass('active-body');
-    // });
+    jQuery('#menu').click(function(){
+        jQuery(this).toggleClass('active-body')
+        jQuery('header').toggleClass('active-body');
+        jQuery('section').toggleClass('active-body');
+        jQuery('footer').toggleClass('active-body');
+    });
 
     //header nav scroll
-    var headerHeight = 77;
-    jQuery("header a, .started").click(function(){
+    var headerHeight = 90;
+    jQuery("header a").click(function(){
 
         // if in responsive mode, close the menu
         if( screen.width <= 770 ) {
@@ -86,5 +102,4 @@
 
   }); 
 
-};
 </script>

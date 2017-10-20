@@ -1,10 +1,9 @@
-$blue: #28546C;  //http://paletton.com/#uid=13t0u0kllllvJEBqyshg8epaX7u
-$bright-green: #0B7FBE;
-$bright-yellow: #0B7FBE;
-$dark-green: #000;
+$bright-green: #83bdc1;
+$bright-yellow: #fff104;
+$dark-green: #28546C;
 
 $text-base: #000;
-$font-title: 'Oswald', sans-serif;
+$font-title: 'Source Sans Pro', sans-serif;
 $font-primary: 'Source Sans Pro', sans-serif;
 
 /* MIXINS */
@@ -63,6 +62,11 @@ $font-primary: 'Source Sans Pro', sans-serif;
 // rotate
 @mixin rotate ($deg) {
   @include transform(rotate(#{$deg}deg));
+}
+
+// skew
+@mixin skew ($deg) {
+  @include transform(skew(#{$deg}deg));
 }
  
 // scale

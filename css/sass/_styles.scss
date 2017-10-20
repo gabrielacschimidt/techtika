@@ -17,12 +17,45 @@ body{
 
 header{
     width:100%;
-    background: #fbfbfb;
+    background: $bright-green;
     position: fixed;
     box-shadow:0px 0px 3px 0px rgba(0,0,0,0.2);
     top: 0;
     left: 0;
     z-index: 2;
+
+    &:before,&:after{
+        content:"";
+        width: 10%;
+        height: 100%;
+        position: absolute;
+        top:0;
+        left: -5%;
+        background-color: $bright-yellow;
+        @include skew(45);
+        @include transition(0.2s ease);
+        @include mobileview{
+            width: 20%;
+            left: -10%;
+            @include skew(30);
+        }
+    }
+
+    &:after{
+        right: -50%;
+    }
+
+    &.active{
+        &:before{
+            left:-50%;
+        }
+        &:after{
+            right:-5%;
+        }
+        h1{
+            left:5%;
+        }
+    }
 
     @include transition(height 0.3s, all 0.5s ease-in-out);
 
@@ -33,24 +66,31 @@ header{
         }
     }
     &+.filler{
-    	height: 77px;
+    	height: 90px;
     	@include mobileview{
     		height: 54px;
     	}
     }
 
-    h2{
-        display:inline-block;
-        float:left;
-        padding: 26px 30px;
-        @include mobileview{
-        	padding: 15px 0;
+    h1{
+        left:10%;
+        float: left;
+        display: table;
+        position: relative;
+        @include transition(0.3s ease-in-out);
+        a img{
+            width: 200px;
+            margin: 0 auto;
+            @include mobileview{
+                width: 120px;
+            }
         }
+        
     }
     nav{
         display:inline-block;
         float:right;
-        padding: 30px ;
+        padding: 35px 30px;
         a{
             margin: 0 20px;
             display:inline;
@@ -60,17 +100,22 @@ header{
             @include desktopview{
 	            &:after{
 	            	position: absolute;
-	            	left: 0;
-	            	bottom:-2px;
+	            	right:0;
+                    bottom:-2px;
 	            	content:'';
 	            	width:0;
-	            	height:2px;
-	            	background: $bright-green;
+	            	height:0;
+                    opacity: 0;
+                    border-top: 3px solid transparent;
+                    border-left: 3px solid transparent;
+                    border-bottom: 3px solid $bright-yellow;
+                    border-right: 3px solid $bright-yellow;
 	            	@include transition(0.3s ease); 
 	            }
 
 	            &:hover:after{
-	            	width:100%;
+                    @include translate(100%, 0);
+                    opacity: 1;
 	            }
             }
 
@@ -171,6 +216,92 @@ header{
     }
 
 }
+
+#about{
+    width: 100%;
+    display: table;
+    position: relative;
+    padding: 50px 0;
+    height: calc(100vh - 90px);
+    font-size: 20px;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    
+    @include mobileview{
+        font-size: 17px;
+        max-width: 90%;
+        @include push-auto();
+    }
+
+    h2{
+        font-family: Source Sans Pro;
+        font-weight: 900;
+        font-size: 100px;
+
+        >span{
+            position: relative;
+
+            //highlights
+            &:before,&:after{
+                content:'';
+                width: 105%;
+                height: 90%;
+                left: 0;
+                bottom: 0;
+                z-index: -1;
+                position: absolute;
+                @include border-radius(2px);
+                background: transparentize($bright-yellow,0.75);
+            }
+            &:before{
+                left:-5px;
+                @include rotate(5)
+            }
+        }
+        @include mobileview{
+            line-height: 1;
+            font-size: 55px;
+            margin-bottom: 30px;
+        }
+        @include smallmobileview{
+            font-size: 45px;
+        }
+    }
+
+
+    p{
+        display: table;
+        max-width: 600px;
+        text-align: justify;
+    }
+
+    ul{
+        margin-top: 20px;
+        li{
+            text-indent: 30px;
+            &::before {
+                content: "▶";
+                font-size: 13px;
+                margin-right: 10px;
+                color: $bright-yellow;
+            }
+        }
+    }
+
+    .wrapper{
+        width: 90%;
+        padding: 0 5%;
+        position: relative;
+        display: table-footer-group;
+
+        a{
+            display: table-cell;
+            text-align: center;
+        }
+    }
+
+}
+
 
 footer{
     padding:20px 0;
